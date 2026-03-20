@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = 'vijaya9494'
         IMAGE_NAME = 'vijaya9494/hotel'
-        TAG = 'latest'
+        TAG = 'v1'
     }
 
     stages {
