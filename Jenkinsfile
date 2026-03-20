@@ -29,26 +29,26 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: "${vijaya9494}",
+                    credentialsId: "${DOCKERHUB_CREDENTIALS}",
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh '''
-                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    sh """
+                        echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
                         docker push ${IMAGE_NAME}:${TAG}
                         docker logout
-                    '''
+                    """
                 }
             }
         }
 
         stage('Run Container') {
             steps {
-                sh '''
+                sh """
                     docker stop restaurant || true
                     docker rm restaurant || true
                     docker run -d -p 4444:8080 --name restaurant ${IMAGE_NAME}:${TAG}
-                '''
+                """
             }
         }
     }
