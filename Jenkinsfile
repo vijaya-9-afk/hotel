@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = 'dockerhub_cred'
+        DOCKERHUB_CREDENTIALS = 'vijaya9494'
         IMAGE_NAME = 'vijaya9494/hotel'
         TAG = 'latest'
     }
@@ -29,7 +29,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: "${DOCKERHUB_CREDENTIALS}",
+                    credentialsId: "${vijaya9494}",
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
